@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -78,8 +79,9 @@ fun Greeting() {
             modifier = Modifier
                 .background(color = Color(0xffF7F3F2))
                 .fillMaxWidth()
-                .padding(top = 50.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(top = 50.dp, start = 50.dp, end = 50.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+
 
         ){
             Text(text = "Seus dados", color = Color(0xff0086ad), fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
@@ -93,8 +95,14 @@ fun Greeting() {
                     Text(text = "Insira seu peso em kg")
                 },
                     colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color(0xff0086ad)
-                    ))
+                        unfocusedBorderColor = Color(0xff0086ad),
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White
+
+                    ),
+                    shape = RoundedCornerShape(10.dp)
+
+                )
             }
             Column {
                 Text(text = "Sua altura", color = Color(0xff0086ad))
@@ -105,14 +113,24 @@ fun Greeting() {
                     Text(text = "Insira sua altura em cm")
                 },
                     colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color(0xff0086ad)
-                    ))
+                        unfocusedBorderColor = Color(0xff0086ad),
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White
+
+                    ),
+                    shape = RoundedCornerShape(10.dp)
+                )
+
             }
 
             Button(
                 onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xff0086ad))) {
-                Text(text = "Calcular")
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xff0086ad)),
+                modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(text = "CALCULAR")
             }
         }
     }
