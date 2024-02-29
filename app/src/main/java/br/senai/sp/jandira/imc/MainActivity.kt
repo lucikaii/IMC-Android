@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -55,12 +59,13 @@ fun Greeting() {
 
     Column (
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
        Column (
            modifier = Modifier
                .fillMaxWidth()
-               .height(250.dp)
+               .height(200.dp)
                .background(Color(0xff0086ad))
                .padding(top = 16.dp),
            horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,16 +82,19 @@ fun Greeting() {
 
         Column (
             modifier = Modifier
-                .background(color = Color(0xffF7F3F2))
-                .fillMaxWidth()
-                .padding(top = 50.dp, start = 50.dp, end = 50.dp),
+                .background(color = Color(0xffF7F3F2), shape = RoundedCornerShape(15.dp),)
+                .width(300.dp)
+                .padding(top = 50.dp, start = 15.dp, end = 15.dp, bottom = 30.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
 
 
         ){
-            Text(text = "Seus dados", color = Color(0xff0086ad), fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
+            Text(text = "Seus dados", color = Color(0xff0086ad), fontSize = 25.sp, fontWeight = FontWeight.ExtraBold)
 
-            Column {
+            Column (
+                modifier = Modifier
+                    .padding(top = 20.dp)
+            ){
                 Text(text = "Seu peso", color = Color(0xff0086ad))
                 OutlinedTextField(
                     value = "",
@@ -97,14 +105,18 @@ fun Greeting() {
                     colors = OutlinedTextFieldDefaults.colors(
                         unfocusedBorderColor = Color(0xff0086ad),
                         unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White
+                        focusedContainerColor = Color.White,
+                        focusedBorderColor = Color(0xff0086ad)
 
                     ),
                     shape = RoundedCornerShape(10.dp)
 
                 )
             }
-            Column {
+            Column (
+                modifier = Modifier
+                    .padding(top = 20.dp)
+            ){
                 Text(text = "Sua altura", color = Color(0xff0086ad))
                 OutlinedTextField(
                     value = "",
@@ -115,7 +127,8 @@ fun Greeting() {
                     colors = OutlinedTextFieldDefaults.colors(
                         unfocusedBorderColor = Color(0xff0086ad),
                         unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White
+                        focusedContainerColor = Color.White,
+                        focusedBorderColor = Color(0xff0086ad)
 
                     ),
                     shape = RoundedCornerShape(10.dp)
@@ -127,13 +140,45 @@ fun Greeting() {
                 onClick = { /*TODO*/ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xff0086ad)),
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(top = 25.dp)
+                    .height(50.dp),
                 shape = RoundedCornerShape(10.dp)
             ) {
-                Text(text = "CALCULAR")
+                Text(text = "CALCULAR", fontWeight = FontWeight.ExtraBold, fontSize = 18.sp)
+            }
+        }
+
+        Row (
+            modifier = Modifier
+                .width(280.dp)
+                .height(100.dp)
+                .background(color = Color(0xff2D9560), shape = RoundedCornerShape(10.dp))
+                .border(width = 0.5.dp, color = Color.Red, shape = RoundedCornerShape(10.dp)),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+
+        ){
+
+            Column (
+                modifier = Modifier
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(text = "Resultado", color = Color.White)
+                Text(text = "Peso Ideal", fontSize = 20.sp, color = Color.White)
+            }
+            Column (
+                modifier = Modifier
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Center
+            ){
+                Text(text = "21.3", fontSize = 32.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
             }
         }
     }
+
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)
